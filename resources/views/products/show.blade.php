@@ -29,7 +29,7 @@
                         <li>
                           PRICE: {{ $prod -> price }} $
                         </li>
-                        @auth
+
                           <li>
                             <a class="btn btn-primary"
                               href="{{ route('products.edit', $prod -> id) }}">
@@ -40,7 +40,7 @@
                               Delete
                             </a>
                           </li>
-                        @endauth
+                          
                       </ul>
                     </div>
                   </div>

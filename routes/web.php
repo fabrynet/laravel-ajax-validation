@@ -9,6 +9,10 @@ Route::get('/', function () {
 // Products Index
 Route::get('/products', 'ProductController@indexProducts') -> name('products.index');
 
+// API
+Route::get('/api/products/all', 'ProductApiController@getAllProducts') -> name('api.products.all');
+Route::get('/api/products/deleted', 'ProductApiController@getDeletedProducts') -> name('api.products.deleted');
+
 // Products Show
 Route::get('/products/{id}/show', 'ProductController@showProducts') -> name('products.show');
 
@@ -25,7 +29,7 @@ Route::get('/products/{id}/destroy', 'ProductController@destroyProducts') -> nam
 
 // Mail
 Route::get('/mailable', function() {
-  $user = App\User::inRandomOrder() -> first();
+  $user = "Fabrynet";
   $prod = App\Product::inRandomOrder() -> first();
   $action = "DELETE";
 

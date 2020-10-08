@@ -22,6 +22,7 @@
                 </div>
 
                 <div class="card-body">
+
                   @if ($errors->any())
                     <div class="alert alert-danger">
                       <ul>
@@ -51,32 +52,65 @@
                             "{{ $prod -> img }}"
                           @else
                             "https://lorempixel.com/200/300/?59575"
-                          @endisset          
+                          @endisset
                         >
                       </div>
                     </fieldset>
                     <div class="form-group">
                       <label for="name">Name</label>
-                      <input class="form-control" type="text" name="name" value="@isset($prod){{ $prod -> name }}@endisset" required>
+                      <input class="form-control @error('name') is-invalid @enderror" type="text" name="name" value=
+                        @isset($prod)
+                          "{{ $prod -> name }}"
+                        @endisset
+                        "{{ old('name') }}"
+                      required>
+                        @error('name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <div class="form-group">
                       <label for="short_desc">Short Desc</label>
-                      <input class="form-control" type="text" name="short_desc" value="@isset($prod){{ $prod -> short_desc }}@endisset" required>
+                      <input class="form-control @error('short_desc') is-invalid @enderror" type="text" name="short_desc" value=
+                        @isset($prod)
+                          "{{ $prod -> short_desc }}"
+                        @endisset
+                        "{{ old('short_desc') }}"
+                        required>
+                        @error('short_desc')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <div class="form-group">
                       <label for="desc">Desc</label>
-                      <textarea class="form-control" name="desc" rows="8" cols="80"  required>@isset($prod){{ $prod -> desc }}@endisset
+                      <textarea class="form-control" name="desc" rows="8" cols="80"  required>{{ old('desc') }}
+                        @isset($prod)
+                          {{ $prod -> desc }}
+                        @endisset    
                       </textarea>
                     </div>
 
                     <div class="row">
                       <div class="form-group col-md-6">
                         <label for="price">Price ($)</label>
-                        <input class="form-control" type="text" name="price" value="@isset($prod){{ $prod -> price }}@endisset" required>
+                        <input class="form-control" type="number" name="price" value=
+                        @isset($prod)
+                          "{{ $prod -> price }}"
+                        @endisset
+                        "{{ old('price') }}"
+                          required>
                       </div>
                       <div class="form-group col-md-6">
                         <label for="qty">Quantity</label>
-                        <input class="form-control" type="text" name="qty" value="@isset($prod){{ $prod -> qty }}@endisset" required>
+                        <input class="form-control" type="number" name="qty" value=
+                        @isset($prod)
+                          "{{ $prod -> qty }}"
+                        @endisset
+                        "{{ old('qty') }}"
+                          required>
                       </div>
                     </div>
 

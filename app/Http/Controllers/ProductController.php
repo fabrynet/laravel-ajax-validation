@@ -4,19 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use App\Mail\UserAction;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
 class ProductController extends Controller
 {
   public function indexProducts() {
-    // primo modo (ORM Eloquent)
-    // $prods = Product::all() -> where('deleted', false);
-    //secondo modo (ORM Eloquent)
-    //$prods = Product::where('deleted', false) -> get();
-    // terzo modo (Query builder)
-    $prods = DB::table('products') -> where('deleted', false) -> get();
-    return view('products.index', compact('prods'));
+    return view('products.index');
   }
   public function showProducts($id) {
     $prod = Product::findOrFail($id);
@@ -42,7 +37,7 @@ class ProductController extends Controller
 
     // invio email
     $email = "admin@boolean.it";
-    $user = Auth::user();
+    $user = "Fabrynet";
     $action = "CREATE";
 
     Mail::to($email)
@@ -73,7 +68,7 @@ class ProductController extends Controller
 
     // invio email
     $email = "admin@boolean.it";
-    $user = Auth::user();
+    $user = "Fabrynet";
     $action = "UPDATE";
 
     Mail::to($email)
@@ -90,7 +85,7 @@ class ProductController extends Controller
 
     // invio email
     $email = "admin@boolean.it";
-    $user = Auth::user();
+    $user = "Fabrynet";
     $action = "DELETE";
 
     Mail::to($email)
